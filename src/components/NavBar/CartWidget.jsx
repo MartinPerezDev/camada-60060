@@ -1,10 +1,10 @@
-import iconCart from "../../assets/cart.jpg"
+import { PiShoppingCartBold } from "react-icons/pi";
 
 const CartWidget = () => {
   return (
-    <div>
-      <img src={iconCart} width={50} alt="" />
-      <p>1</p>
+    <div className="cartwidget">
+      <PiShoppingCartBold className="icon-cartwidget" />
+      <p className="number-cartwidget">1</p>
     </div>
   )
 }

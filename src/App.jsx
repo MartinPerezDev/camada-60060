@@ -6,11 +6,11 @@ import './App.css'
 function App() {
 
   return (
-    <div>
+    <div className='container-app'>
       <NavBar />
       <ItemListContainer saludo={"Hola Mundo!!"} />
 
-      <Contador />
+      <Contador />     
     </div>
   )
 }
