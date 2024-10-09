@@ -8,9 +8,7 @@ function App() {
   return (
     <div className='container-app'>
       <NavBar />
-      <ItemListContainer saludo={"Hola Mundo!!"} />
-
-      <Contador />     
+      <ItemListContainer saludo={"Hola Mundo!!"} />     
     </div>
   )
 }
