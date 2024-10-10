@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
+import ItemList from "./ItemList"
 import { getProducts } from "../../data/data.js"
-import ItemList from "./ItemList.jsx"
 import "./itemlistcontainer.css"
 
 const ItemListContainer = ({ saludo }) => {
@@ -8,20 +8,21 @@ const ItemListContainer = ({ saludo }) => {
 
   useEffect(() => {
     getProducts()
-      .then((dataProducts) => {
-        setProducts(dataProducts)
+      .then((data) => {
+        setProducts(data)
       })
       .catch((error) => {
         console.error(error)
       })
       .finally(() => {
-        console.log("finalizo la promesa")
+        console.log("Finalizo la promesa")
       })
   }, [])
 
+
   return (
-    <div className="item-list-container">
-      <h2>{saludo}</h2>
+    <div className="itemlistcontainer">
+      <h1>{saludo}</h1>
       <ItemList products={products} />
     </div>
   )

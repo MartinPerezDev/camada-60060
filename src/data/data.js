@@ -1,48 +1,76 @@
 const products = [
   {
-    id: "Df2121",
-    name: "Remera roja",
+    id: "Grt223",
+    name: "Remera Extreme",
     description: "",
+    price: 400,
     stock: 10,
-    price: 2000,
-    image: "/img/remera-roja.webp",
+    image: "/img/remera-h.jpg",
     category: "remeras"
   },
   {
-    id: "Gt2233",
-    name: "Gorra Nike",
+    id: "Grt224",
+    name: "Remera Fitz Roy",
     description: "",
-    stock: 2,
-    price: 1000,
-    image: "/img/gorra.jpeg",
-    category: "gorras"
+    price: 420,
+    stock: 4,
+    image: "/img/remera-m.jpg",
+    category: "remeras"
   },
   {
-    id: "Mn22121",
-    name: "Zapatillas verdes",
+    id: "Hff556",
+    name: "Pantalon Dorian",
     description: "",
+    price: 720,
     stock: 5,
-    price: 5000,
-    image: "/img/zapatillas.jpeg",
+    image: "/img/pantalon-h.jpg",
+    category: "pantalones"
+  },
+  {
+    id: "Hff557",
+    name: "Pantalon Ambar",
+    description: "",
+    price: 620,
+    stock: 17,
+    image: "/img/pantalon-m.jpg",
+    category: "pantalones"
+  },
+  {
+    id: "Wre442",
+    name: "Zapatillas Cloudfield",
+    description: "",
+    price: 800,
+    stock: 2,
+    image: "/img/zapatillas-m.jpg",
     category: "zapatillas"
-  }
+  },
+  {
+    id: "Wre443",
+    name: "Zapatillas Space",
+    description: "",
+    price: 820,
+    stock: 6,
+    image: "/img/zapatillas-h.jpg",
+    category: "zapatillas"
+  },
 ]
-
 /*
-  const promesa = new Promise( (resolve, reject)=>{
+  const promesa = new Promise( (resolve, reject)=> {
     if(condicion){
-      resolve("se resolvio la promesa")
+      resolve("se resolvio")
     }else{
-      reject("se rechazo la promesa")
+      reject("se rechazo")
     }
   })
 */
 
+//Obtener productos
 const getProducts = () => {
   return new Promise((resolve, reject) => {
-    setTimeout(() => {
+    //Simulamos un retraso de red
+    setTimeout( ()=>{
       resolve(products)
-    }, 2000)
+    }, 2000 )
   })
 }
 
