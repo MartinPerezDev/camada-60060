@@ -1,10 +1,9 @@
-const ComponentePadre = ( { children } ) => {
+const ComponentePadre = ( { title, children } ) => {
 
   return (
     <div>
-      <div>NavBar</div>
+      <h2>{title}</h2>
       { children }
-      <div>Footer</div>
     </div>
   )
 }
