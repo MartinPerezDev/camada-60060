@@ -20,7 +20,7 @@ const products = [
   {
     id: "Hff556",
     name: "Pantalon Dorian",
-    description: "",
+    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores corporis eos nostrum eum iste voluptate ullam itaque possimus, dolor fugiat id praesentium veniam nisi pariatur sit non eligendi. Ad, veritatis!",
     price: 720,
     stock: 5,
     image: "/img/pantalon-h.jpg",
