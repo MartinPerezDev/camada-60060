@@ -5,18 +5,26 @@ import ItemDetail from "./ItemDetail.jsx"
 
 const ItemDetailContainer = () => {
   const [product, setProduct] = useState({})
+  const [loading, setLoading] = useState(true)
   const { idProduct } = useParams()
 
-  useEffect( ()=> {
+  useEffect(() => {
+    setLoading(true)
+
     getProducts()
-      .then( (data)=> {
-        const findProduct = data.find( (product)=> product.id === idProduct )
+      .then((data) => {
+        const findProduct = data.find((product) => product.id === idProduct)
         setProduct(findProduct)
       })
-  }, [idProduct] )
+      .finally(() => setLoading(false))
+  }, [idProduct])
 
   return (
-    <ItemDetail product={product} />
+    <>
+      {
+        loading === true ? ( <div>Cargando...</div> ) : <ItemDetail product={product} />
+      }
+    </>
   )
 }
 export default ItemDetailContainer
