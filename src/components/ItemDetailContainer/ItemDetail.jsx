@@ -1,11 +1,29 @@
+import ItemCount from "../ItemCount/ItemCount"
+import "./itemdetail.css"
+
 const ItemDetail = ({ product }) => {
+
+  const addProduct = (count) => {
+    const productCart = { ...product, quantity: count }
+
+    console.log(productCart)
+  }
+
   return (
-    <div style={{ display: "flex" }}>
-      <img src={product.image} width={500} alt="" />
-      <div>
-        <h2>{product.name}</h2>
-        <p>{product.description}</p>
-        <p>Precio: ${product.price}</p>
+    <div className="item-detail">
+      <div className="images-detail-container">
+        <div className="secondary-images">
+        </div>
+        <div className="main-image">
+          <img src={product.image} alt="" />
+        </div>
+      </div>
+
+      <div className="text-detail-container">
+        <h2 className="title-detail">{product.name}</h2>
+        <p className="text-detail">{product.description}</p>
+        <p className="text-detail">Precio: ${product.price}</p>
+        <ItemCount stock={product.stock} addProduct={addProduct} />
       </div>
     </div>
   )

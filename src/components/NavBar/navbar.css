@@ -15,6 +15,10 @@
 .categories .category{
   list-style: none;
 }
+.categories .category .text-link:hover{
+  color: #2ECC71;
+  text-decoration: underline;
+}
 
 .brand{
   width: 33.3%;
@@ -40,6 +44,10 @@
 }
 .cartwidget .icon-cartwidget{
   font-size: 30px;
+}
+.cartwidget .empty-cartwidget{
+  font-size: 30px;
+  color: rgb(64, 64, 64);
 }
 .cartwidget .number-cartwidget{
   padding: 0 10px;
