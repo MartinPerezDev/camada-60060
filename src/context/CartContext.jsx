@@ -7,7 +7,24 @@ const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([])
 
   const addProductInCart = (newProduct) => {
-    setCart( [ ...cart, newProduct ] )
+
+    const condicion = isIncart(newProduct.id)
+    if(condicion){
+      //sumar cantidades
+      const tempCart = [...cart]
+      const findIndex = tempCart.findIndex( (productCart)=> productCart.id === newProduct.id )
+      tempCart[findIndex].quantity = tempCart[findIndex].quantity + newProduct.quantity
+      
+      setCart(tempCart)
+    }else{
+      //guardarlo como producto nuevo
+      setCart( [ ...cart, newProduct ] )
+    }
+  }
+
+  //funcion que devuelve true o false dependiendo si el producto a comprobar esta en el carrito
+  const isIncart = (idProduct) => {
+    return cart.some( (productCart) => productCart.id === idProduct )
   }
 
   //cantidad total de productos

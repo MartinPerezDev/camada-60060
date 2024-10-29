@@ -52,3 +52,15 @@
 .cartwidget .number-cartwidget{
   padding: 0 10px;
 }
+
+.empty-cart{
+  color : rgb(66, 66, 66);
+}
+
+.icon-cart{
+  color: rgb(75, 216, 75);
+  border: 1px solid white;
+  border-radius: 100%;
+  padding: 3px;
+  font-size: 30px;
+}

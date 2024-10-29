@@ -6,16 +6,19 @@ import "./itemlistcontainer.css"
 
 const ItemListContainer = ({ saludo }) => {
   const [products, setProducts] = useState([])
+  const [loading, setLoading] = useState(true)
   const { idCategory } = useParams()
 
   useEffect(() => {
+    setLoading(true)
+
     getProducts()
       .then((data) => {
-        if(idCategory){
+        if (idCategory) {
           //filtramos la data por esa categoria
-          const filterProducts = data.filter( (product)=> product.category === idCategory )
+          const filterProducts = data.filter((product) => product.category === idCategory)
           setProducts(filterProducts)
-        }else{
+        } else {
           //guardamos todos los productos
           setProducts(data)
         }
@@ -24,7 +27,7 @@ const ItemListContainer = ({ saludo }) => {
         console.error(error)
       })
       .finally(() => {
-        console.log("Finalizo la promesa")
+        setLoading(false)
       })
   }, [idCategory])
 
@@ -32,7 +35,13 @@ const ItemListContainer = ({ saludo }) => {
   return (
     <div className="itemlistcontainer">
       <h1>{saludo}</h1>
-      <ItemList products={products} />
+      {
+        loading === true ? (
+          <div>Cargando...</div>
+        ) : (
+          <ItemList products={products} />
+        )
+      }
     </div>
   )
 }
