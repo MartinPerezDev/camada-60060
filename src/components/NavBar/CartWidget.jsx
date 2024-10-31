@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext } from "react"
 import { CartContext } from "../../context/CartContext";
 import { PiShoppingCartBold } from "react-icons/pi";
 import { Link } from "react-router-dom";
@@ -6,12 +6,12 @@ import { Link } from "react-router-dom";
 const CartWidget = () => {
   const { totalQuantity } = useContext(CartContext)
 
-  const quantity = totalQuantity()
+  const total = totalQuantity()
 
   return (
-    <Link to="/cart" className="cartwidget" >
-      <PiShoppingCartBold className={ quantity === 0 ? "empty-cart" : "icon-cart" } />
-      <p className="number-cartwidget">{ quantity >= 1 && quantity }</p>
+    <Link to="/cart" className="cartwidget">
+      <PiShoppingCartBold className={ total > 0 ? "icon-cartwidget" : "empty-cartwidget" } />
+      <p className="number-cartwidget">{ total >= 1 && total }</p>
     </Link>
   )
 }

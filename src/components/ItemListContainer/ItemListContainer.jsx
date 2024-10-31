@@ -1,47 +1,53 @@
 import { useState, useEffect } from "react"
 import ItemList from "./ItemList"
-import { getProducts } from "../../data/data.js"
 import { useParams } from "react-router-dom"
+import { collection, getDocs, query, where } from "firebase/firestore"
+import db from "../../db/db.js"
 import "./itemlistcontainer.css"
 
 const ItemListContainer = ({ saludo }) => {
   const [products, setProducts] = useState([])
-  const [loading, setLoading] = useState(true)
   const { idCategory } = useParams()
 
-  useEffect(() => {
-    setLoading(true)
+  const getProducts = () => {
+    const productsRef = collection( db, "products" )
+    getDocs(productsRef)
+      .then((dataDb)=> {
+        //formateamos correctamente nuestros productos
+        const productsDb = dataDb.docs.map((productDb)=> {
+          return { id: productDb.id , ...productDb.data() }
+        })
 
-    getProducts()
-      .then((data) => {
-        if (idCategory) {
-          //filtramos la data por esa categoria
-          const filterProducts = data.filter((product) => product.category === idCategory)
-          setProducts(filterProducts)
-        } else {
-          //guardamos todos los productos
-          setProducts(data)
-        }
+        setProducts(productsDb)
       })
-      .catch((error) => {
-        console.error(error)
+  }
+
+  const getProductsByCategory = () => {
+    const productsRef = collection(db, "products")
+    const queryCategories = query( productsRef, where("category", "==", idCategory) )
+    getDocs(queryCategories)
+      .then((dataDb)=> {
+        const productsDb = dataDb.docs.map((productDb)=>{
+          return { id: productDb.id, ...productDb.data() }
+        })
+
+        setProducts(productsDb)
       })
-      .finally(() => {
-        setLoading(false)
-      })
+  }
+
+  useEffect(() => {
+    if(idCategory){
+      getProductsByCategory()
+    }else{
+      getProducts()
+    }
   }, [idCategory])
 
 
   return (
     <div className="itemlistcontainer">
       <h1>{saludo}</h1>
-      {
-        loading === true ? (
-          <div>Cargando...</div>
-        ) : (
-          <ItemList products={products} />
-        )
-      }
+      <ItemList products={products} />
     </div>
   )
 }
