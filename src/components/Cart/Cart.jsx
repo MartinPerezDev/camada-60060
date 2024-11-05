@@ -38,6 +38,7 @@ const Cart = () => {
       <div className="info-cart">
         <p className="text-info-cart">Precio total: ${totalPrice()}</p>
         <button className="button-delete-cart" onClick={deleteCart} >Vaciar carrito</button>
+        <Link to="/checkout" >Terminar mi compra</Link>
       </div>
     </div>
   )

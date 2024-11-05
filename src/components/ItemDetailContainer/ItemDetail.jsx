@@ -33,7 +33,7 @@ const ItemDetail = ({ product }) => {
           showItemCount === true ? (
             <ItemCount stock={product.stock} addProduct={addProduct} />
           ) : (
-            <Link to="/cart">Terminar mi compra</Link>
+            <Link to="/cart" className="button-end-buy">Terminar mi compra</Link>
           )
         }
       </div>
