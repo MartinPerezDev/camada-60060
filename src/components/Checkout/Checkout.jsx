@@ -5,6 +5,8 @@ import { CartContext } from "../../context/CartContext"
 import { Timestamp, addDoc, collection, doc, setDoc } from "firebase/firestore"
 import db from "../../db/db.js"
 import { Link } from "react-router-dom"
+import validateForm from "../../utils/validateForm.js"
+import { toast } from "react-toastify"
 
 const Checkout = () => {
   const [dataForm, setDataForm] = useState({
@@ -19,7 +21,7 @@ const Checkout = () => {
     setDataForm({ ...dataForm, [event.target.name]: event.target.value })
   }
 
-  const handleSubmitForm = (event) => {
+  const handleSubmitForm = async(event) => {
     event.preventDefault()
 
     const order = {
@@ -29,7 +31,17 @@ const Checkout = () => {
       total: totalPrice()
     }
 
-    uploadOrder(order)
+    try {
+      const response = await validateForm(dataForm)
+      console.log(response)
+      if(response.status === "error") throw new Error(response.message)
+      
+      toast.success("Subiendo orden...")
+      uploadOrder(order)
+
+    } catch (error) {
+      toast.error(error.message)
+    }
   }
 
   const uploadOrder = (newOrder) => {
